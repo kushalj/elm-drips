@@ -16,6 +16,7 @@ init : String -> ( Model, Cmd Msg )
 init topic =
     let
         waitingUrl =
+            -- changed to recall the waiting gif between loads
             "https://i.imgur.com/uozTnoB.gif"
             -- "https://i.imgur.com/i6eXrfS.gif"
     in
@@ -38,14 +39,11 @@ update msg model =
         RequestMore ->
             ( { model | gifUrl = "https://i.imgur.com/uozTnoB.gif" }, getRandomGif model.topic )
 
-
-        NewGif result ->
-            case result of
-                Ok url ->
-                    ( { model | gifUrl = url }, Cmd.none )
+        NewGif (Ok url) ->
+            ( { model | gifUrl = url }, Cmd.none )
                 
-                Err _ ->
-                    ( model, Cmd.none )
+        NewGif (Err _) ->
+            ( model, Cmd.none )
 
 
 view : Model -> Html Msg
