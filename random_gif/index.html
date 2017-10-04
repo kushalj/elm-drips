@@ -9036,7 +9036,9 @@ var _user$project$Main$update = F2(
 		if (_p0.ctor === 'RequestMore') {
 			return {
 				ctor: '_Tuple2',
-				_0: model,
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{gifUrl: 'https://i.imgur.com/uozTnoB.gif'}),
 				_1: _user$project$Main$getRandomGif(model.topic)
 			};
 		} else {
