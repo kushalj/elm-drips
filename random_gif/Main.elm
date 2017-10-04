@@ -30,6 +30,7 @@ init topic =
 type Msg
     = RequestMore
     | NewGif (Result Http.Error String)
+    | Change String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -45,13 +46,19 @@ update msg model =
         NewGif (Err _) ->
             ( model, Cmd.none )
 
+        Change text ->
+            ( { model | topic = text }, Cmd.none )
+
 
 view : Model -> Html Msg
 view model =
     div []
-        [ h2 [] [ text model.topic ]
-        , div [] [ img [ src model.gifUrl ] [] ]
-        , button [ onClick RequestMore ] [ text "More, better..." ]
+        [ h2 [] [ text ("Topic: " ++ model.topic) ]
+        , input [ placeholder ("enter topic, e.g. " ++ model.topic), onInput Change ] []
+        , div [] [ img [ src model.gifUrl, onClick RequestMore ] [] ]
+        , div [] [ text model.gifUrl ]
+        , br [] [] 
+        , button [ onClick RequestMore ] [ text "More!" ]
         ]
 
 
