@@ -1,0 +1,19 @@
+{
+  "name": "elm-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "elm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "chokidar '**/*.elm' -c 'elm-make Main.elm --output elm.js' --initial & reload -b"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "elm": "^0.18.0",
+    "elm-live": "^2.7.5",
+    "reload": "^2.2.2",
+    "serve": "^6.2.0"
+  }
+}
