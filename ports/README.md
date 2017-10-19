@@ -1,10 +1,7 @@
 ## Ports ##
 
-demo: https://kushalj.github.io/elm-drips/ports/
+demo: https://kushalj.github.io/elm-drips/ports-exercise/
 
 build:
     npm install --only=dev
     run watch
-
-in the console:
-    app.ports.jsMsgs.send(1)

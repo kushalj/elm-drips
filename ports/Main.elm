@@ -62,6 +62,13 @@ subscriptions model =
 
 
 
+--INPUT ports
+
+
+port jsMsgs : (Int -> msg) -> Sub msg
+
+
+
 -- OUTPUT ports
 -- First, we want to add the outbound port we subscribed to from the JS side.
 -- This is a function that takes one argument and returns a `Cmd`.  In our case,
@@ -69,9 +76,6 @@ subscriptions model =
 
 
 port increment : () -> Cmd msg
-
-
-port jsMsgs : (Int -> msg) -> Sub msg
 
 
 mapJsMsg : Int -> Msg
