@@ -7910,6 +7910,12 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
+var _user$project$Main$initialModel = {counter: 0, increments: 0, decrements: 0};
+var _user$project$Main$increment = _elm_lang$core$Native_Platform.outgoingPort(
+	'increment',
+	function (v) {
+		return null;
+	});
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -7920,7 +7926,8 @@ var _user$project$Main$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{counter: model.counter + 1, increments: model.increments + 1}),
-					_1: _elm_lang$core$Platform_Cmd$none
+					_1: _user$project$Main$increment(
+						{ctor: '_Tuple0'})
 				};
 			case 'Decrement':
 				return {
@@ -7934,7 +7941,6 @@ var _user$project$Main$update = F2(
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _user$project$Main$initialModel = {counter: 0, increments: 0, decrements: 0};
 var _user$project$Main$jsMsgs = _elm_lang$core$Native_Platform.incomingPort('jsMsgs', _elm_lang$core$Json_Decode$int);
 var _user$project$Main$Model = F3(
 	function (a, b, c) {

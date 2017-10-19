@@ -12,12 +12,12 @@ type alias Model =
 
 
 initialModel : Model
-initialModel = 
+initialModel =
     { counter = 0
     , increments = 0
     , decrements = 0
     }
- 
+
 
 type Msg
     = Increment
@@ -25,15 +25,15 @@ type Msg
     | NoOp
 
 
-update: Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increment ->
             ( { model
                 | counter = model.counter + 1
                 , increments = model.increments + 1
-            }
-            , Cmd.none
+              }
+            , increment ()
             )
 
         Decrement ->
@@ -61,6 +61,16 @@ subscriptions model =
     jsMsgs mapJsMsg
 
 
+
+-- OUTPUT ports
+-- First, we want to add the outbound port we subscribed to from the JS side.
+-- This is a function that takes one argument and returns a `Cmd`.  In our case,
+-- we have nothing to send so we'll make its input type the unit.
+
+
+port increment : () -> Cmd msg
+
+
 port jsMsgs : (Int -> msg) -> Sub msg
 
 
@@ -69,20 +79,17 @@ mapJsMsg int =
     case int of
         1 ->
             Increment
-        
+
         _ ->
             NoOp
 
 
 view : Model -> Html Msg
 view model =
-    div [] 
+    div []
         [ button [ onClick Decrement ] [ text "-" ]
         , div [] [ text (toString model.counter) ]
         , button [ onClick Increment ] [ text "+" ]
         , h3 [] [ text ("- clicked " ++ toString model.decrements ++ " times") ]
         , h3 [] [ text ("+ clicked " ++ toString model.increments ++ " times") ]
         ]
-  
-
-
